@@ -33,6 +33,7 @@ public class ListaTarefas {
 
 
     public void obterDescricoesTarefas() {
+
         System.out.println(tarefaList.toString());
     }
 

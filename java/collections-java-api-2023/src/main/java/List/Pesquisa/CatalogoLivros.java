@@ -9,10 +9,12 @@ public class CatalogoLivros {
 
 
     public CatalogoLivros() {
+
         this.listaLivros = new ArrayList<>();
     }
 
     public List<Livro> getListaLivros() {
+
         return listaLivros;
     }
 
@@ -38,10 +40,15 @@ public class CatalogoLivros {
 
     public List<Livro> pesquisarPorIntervaloAnos(int anoInicial, int anoFinal) {
         List<Livro> resultadoPesquisaIntervaloAnos = new ArrayList<>();
-        for (Livro livro : listaLivros) {
-            if (livro.getAnoPublicacao() >= anoInicial && livro.getAnoPublicacao() <= anoFinal) {
-                resultadoPesquisaIntervaloAnos.add(livro);
+        if (!listaLivros.isEmpty()) {
+            for (Livro livro : listaLivros) {
+                if (livro.getAnoPublicacao() >= anoInicial && livro.getAnoPublicacao() <= anoFinal) {
+                    resultadoPesquisaIntervaloAnos.add(livro);
+                }
+
             }
+        } else {
+            System.out.println("O catálogo está vazio!");
 
         }
         return resultadoPesquisaIntervaloAnos;
@@ -49,15 +56,18 @@ public class CatalogoLivros {
 
     public Livro pesquisarPorTitulo(String titulo) {
         Livro resultadoPesquisaPorTitulo = null;
-        for (Livro livro : listaLivros) {
-            if (livro.getTitulo().equalsIgnoreCase(titulo)) {
-                resultadoPesquisaPorTitulo = livro;
-                break;
+        if (!listaLivros.isEmpty()) {
+            for (Livro livro : listaLivros) {
+                if (livro.getTitulo().equalsIgnoreCase(titulo)) {
+                    resultadoPesquisaPorTitulo = livro;
+                    break;
+                }
             }
         }
 
         return resultadoPesquisaPorTitulo;
     }
+
 
     public static void main(String[] args) {
         CatalogoLivros catalogoLivros = new CatalogoLivros();
@@ -65,14 +75,12 @@ public class CatalogoLivros {
         catalogoLivros.adicionarLivros("Titulo1", "Fulano", 2023);
         catalogoLivros.adicionarLivros("Titulo2", "Ciclano", 2023);
         catalogoLivros.adicionarLivros("Titulo2", "Beltrano", 2020);
+        catalogoLivros.adicionarLivros("Titulo4", "Beltrano", 1998);
 
         //System.out.println("Catálogo completo: " + catalogoLivros.getListaLivros());
 
 
-
-        System.out.println(catalogoLivros.pesquisarPorAutor("zezinho"));
-
-
+        System.out.println(catalogoLivros.pesquisarPorAutor("beltrano"));
 
 
     }
